@@ -2,32 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer base {
+    :root {
+        --bright-blue: #3a7bfd;
+
+        --dark-blue: #161722; /* fundo page*/
+        --dark-desaturated-blue: #25273c; /* fundo input*/
+        --active-font-color: #cacde8;
+        --darkMode-hover: #e4e5f1;
+        --dark-grayish-blue: #777a92;
+        --darkMode-font-color: #4d5066;
+        --dark-grayish-blue-bg: #393a4c;
+
+        --light-gray: #fafafa;
+        --lighter-grayish-blue: #e4e5f1;
+        --light-grayish-blue: #d2d3db;
+        --grayish-blue: #9394a5;
+        --lightMode-hover: #484b6a;
+
+        --addTodo-text: #656468;
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+@layer components {
+    @layer components {
+        .check-input-checked {
+            border: none;
+            background: url('/images/icon-check.svg') no-repeat center,
+                linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+        }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+        /*  CRIA BORDA COM GRADIENTE */
+        .check-input:hover {
+            border: solid 1.5px transparent;
+            border-radius: 50%;
+            background: linear-gradient(
+                    135deg,
+                    hsl(192, 100%, 67%),
+                    hsl(280, 87%, 65%)
+                )
+                border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box,
+                linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+    }
 }
